@@ -10,7 +10,7 @@
 // useful when saving the description in local storage?
 
 // Local storage set item function
-$(document).ready(function () {
+$(function () {
   
   $('.saveBtn').on('click', function(event) {
     event.preventDefault();
