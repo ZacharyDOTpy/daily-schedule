@@ -15,8 +15,8 @@ $(function () {
   $('.saveBtn').on('click', function(event) {
     event.preventDefault();
 
-    var description = $(this).siblings('.description').val();
     var time = $(this).parent().attr('id');
+    var description = $(this).siblings('.description').val();
 
     localStorage.setItem(time, description);
   })
@@ -26,7 +26,7 @@ $(function () {
   // attribute of each time-block be used to do this?
   
   // variables to get data from local storage
-  $('#hour9 .description').val(localStorage.getItem('hour9'));
+  $('#hour09 .description').val(localStorage.getItem('hour09'));
   $('#hour10 .description').val(localStorage.getItem('hour10'));
   $('#hour11 .description').val(localStorage.getItem('hour11'));
   $('#hour12 .description').val(localStorage.getItem('hour12'));
