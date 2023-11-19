@@ -10,7 +10,7 @@
 // useful when saving the description in local storage?
 
 // Local storage set item function
-$(function () {
+$(document).ready(function () {
   $('.saveBtn').on('click', function() {
     var description = $(this).siblings('.description').val();
     var time = $(this).parent().attr('id');
@@ -18,15 +18,15 @@ $(function () {
     localStorage.setItem(description, time);
   })
   // variables to get data from local storage
-  $("#hour-9 .description").val(localStorage.getItem("hour9"));
-  $("#hour-10 .description").val(localStorage.getItem("hour10"));
-  $("#hour-11 .description").val(localStorage.getItem("hour11"));
-  $("#hour-12 .description").val(localStorage.getItem("hour12"));
-  $("#hour-13 .description").val(localStorage.getItem("hour13"));
-  $("#hour-14 .description").val(localStorage.getItem("hour14"));
-  $("#hour-15 .description").val(localStorage.getItem("hour15"));
-  $("#hour-16 .description").val(localStorage.getItem("hour16"));
-  $("#hour-17 .description").val(localStorage.getItem("hour17"));
+  $('#hour-9 .description').val(localStorage.getItem('hour9'));
+  $('#hour-10 .description').val(localStorage.getItem('hour10'));
+  $('#hour-11 .description').val(localStorage.getItem('hour11'));
+  $('#hour-12 .description').val(localStorage.getItem('hour12'));
+  $('#hour-13 .description').val(localStorage.getItem('hour13'));
+  $('#hour-14 .description').val(localStorage.getItem('hour14'));
+  $('#hour-15 .description').val(localStorage.getItem('hour15'));
+  $('#hour-16 .description').val(localStorage.getItem('hour16'));
+  $('#hour-17 .description').val(localStorage.getItem('hour17'));
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -38,9 +38,34 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   
-  //
+  // past|present|future class swap function
+  function timeKeeper() {
+    var currentHour = dayjs().hour();
+
+    $('.time-block').each(function() {
+      var hourBlock = parseInt($(this).attr('id').split('hour')[1]);
+
+      if (hourBlock === currentHour) {
+        $(this).addClass('present');
+        $(this).removeClass('past');
+        $(this).removeClass('future');
+      }
+      else if (hourBlock < currentHour) {
+        $(this).addClass('past');
+        $(this).removeClass('present');
+        $(this).removeClass('future');
+      }
+      else {
+        $(this).addClass('future');
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+      }
+    })
+  }
+
+  timeKeeper();
+
   // TODO: Add code to display the current date in the header of the page.
-  
   // Current day variable
   $('#currentDay').text(dayjs().format('[Date: ] dddd MMM DD, YYYY [Time: ] h:mm a'));
 });
